@@ -7,7 +7,8 @@ const Project = mongoose.Schema({
     },
     tanggal:{
         type: Date,
-        required: true
+        
+        required: false
     },
     isi:{
         type: String,

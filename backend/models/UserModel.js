@@ -1,18 +1,18 @@
 import mongoose from "mongoose";
  
-const Berita = mongoose.Schema({
-    judul:{
+const User = mongoose.Schema({
+    nama:{
         type: String,
         required: true
     },
-    tanggal:{
-        type: Date,
+    instagram:{
+        type: String,
         required: true
     },
-    isi:{
+    linkedin:{
         type: String,
         required: true
     }
 });
  
-export default mongoose.model('Berita', Berita);
+export default mongoose.model('User', User);
