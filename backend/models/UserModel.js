@@ -5,6 +5,10 @@ const User = mongoose.Schema({
         type: String,
         required: true
     },
+    divisi:{
+        type: String,
+        required: true
+    },
     instagram:{
         type: String,
         required: true

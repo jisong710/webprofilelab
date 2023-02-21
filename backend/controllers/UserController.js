@@ -90,24 +90,24 @@ export const saveProject = async (req, res) => {
  
 export const getProjectById = async (req, res) => {
     try {
-        const Project = await Project.findById(req.params.id);
-        res.json(Project);
+        const project = await Project.findById(req.params.id);
+        res.json(project);
     } catch (error) {
         res.status(404).json({message: error.message});
     }
 }
 export const getBeritaById = async (req, res) => {
     try {
-        const Berita = await Berita.findById(req.params.id);
-        res.json(Berita);
+        const berita = await Berita.findById(req.params.id);
+        res.json(berita);
     } catch (error) {
         res.status(404).json({message: error.message});
     }
 }
 export const getUserById = async (req, res) => {
     try {
-        const User = await User.findById(req.params.id);
-        res.json(User);
+        const user = await User.findById(req.params.id);
+        res.json(user);
     } catch (error) {
         res.status(404).json({message: error.message});
     }

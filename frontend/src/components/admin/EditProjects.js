@@ -3,9 +3,8 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
  
 const EditProject = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("Male");
+  const [proyek, setproyek] = useState("");
+  const [isi, setisi] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
  
@@ -14,21 +13,19 @@ const EditProject = () => {
   }, []);
  
   const getUserById = async () => {
-    const response = await axios.get(`http://localhost:5000/users/${id}`);
-    setName(response.data.name);
-    setEmail(response.data.email);
-    setGender(response.data.gender);
+    const response = await axios.get(`http://localhost:5000/Project/${id}`);
+    setproyek(response.data.proyek);
+    setisi(response.data.isi);
   };
  
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/users/${id}`, {
-        name,
-        email,
-        gender,
+      await axios.patch(`http://localhost:5000/UpdateProject/${id}`, {
+        proyek,
+        isi,
       });
-      navigate("/");
+      navigate("/ProjectList");
     } catch (error) {
       console.log(error);
     }
@@ -38,42 +35,27 @@ const EditProject = () => {
     <div className="columns mt-5">
       <div className="column is-half">
         <form onSubmit={updateUser}>
-          <div className="field">
-            <label className="label">Name</label>
+        <div className="field">
+            <label className="label">nama project</label>
             <div className="control">
               <input
                 type="text"
                 className="input"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
+                value={proyek}
+                onChange={(e) => setproyek(e.target.value)}
+                placeholder="nama project"
               />
             </div>
           </div>
           <div className="field">
-            <label className="label">Email</label>
+            <label className="label">isi</label>
             <div className="control">
-              <input
-                type="text"
+              <textarea
                 className="input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
+                value={isi}
+                onChange={(e) => setisi(e.target.value)}
+                placeholder="isi"
               />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Gender</label>
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
             </div>
           </div>
           <div className="field">

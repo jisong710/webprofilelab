@@ -3,20 +3,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
  
 const AddProject = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("Male");
+  const [proyek, setproyek] = useState("");
+  const [isi, setisi] = useState("");
   const navigate = useNavigate();
  
   const saveUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/users", {
-        name,
-        email,
-        gender,
+      await axios.post("http://localhost:5000/MakeProject", {
+          proyek,
+          isi,
       });
-      navigate("/");
+      navigate("/ProjectList");
     } catch (error) {
       console.log(error);
     }
@@ -27,41 +25,26 @@ const AddProject = () => {
       <div className="column is-half">
         <form onSubmit={saveUser}>
           <div className="field">
-            <label className="label">Name</label>
+            <label className="label">nama project</label>
             <div className="control">
               <input
                 type="text"
                 className="input"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
+                value={proyek}
+                onChange={(e) => setproyek(e.target.value)}
+                placeholder="nama project"
               />
             </div>
           </div>
           <div className="field">
-            <label className="label">Email</label>
+            <label className="label">isi</label>
             <div className="control">
-              <input
-                type="text"
+              <textarea
                 className="input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
+                value={isi}
+                onChange={(e) => setisi(e.target.value)}
+                placeholder="isi"
               />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Gender</label>
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
             </div>
           </div>
           <div className="field">

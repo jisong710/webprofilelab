@@ -3,9 +3,10 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
  
 const EditUser = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("Male");
+  const [nama, setnama] = useState("");
+  const [divisi, setdivisi] = useState("");
+  const [instagram, setinstagram] = useState("");
+  const [linkedin, setlinkedin] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
  
@@ -14,21 +15,23 @@ const EditUser = () => {
   }, []);
  
   const getUserById = async () => {
-    const response = await axios.get(`http://localhost:5000/users/${id}`);
-    setName(response.data.name);
-    setEmail(response.data.email);
-    setGender(response.data.gender);
+    const response = await axios.get(`http://localhost:5000/User/${id}`);
+    setnama(response.data.nama);
+    setdivisi(response.data.divisi);
+    setinstagram(response.data.instagram);
+    setlinkedin(response.data.linkedin);
   };
  
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/users/${id}`, {
-        name,
-        email,
-        gender,
+      await axios.patch(`http://localhost:5000/UpdateUser/${id}`, {
+        nama,
+        divisi,
+        instagram,
+        linkedin
       });
-      navigate("/");
+      navigate("/UserList");
     } catch (error) {
       console.log(error);
     }
@@ -38,42 +41,56 @@ const EditUser = () => {
     <div className="columns mt-5">
       <div className="column is-half">
         <form onSubmit={updateUser}>
-          <div className="field">
-            <label className="label">Name</label>
+        <div className="field">
+            <label className="label">Nama</label>
             <div className="control">
               <input
                 type="text"
                 className="input"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
+                value={nama}
+                onChange={(e) => setnama(e.target.value)}
+                placeholder="Nama"
               />
             </div>
           </div>
           <div className="field">
-            <label className="label">Email</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Gender</label>
+            <label className="label">Divisi</label>
             <div className="control">
               <div className="select is-fullwidth">
                 <select
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
+                  value={divisi}
+                  onChange={(e) => setdivisi(e.target.value)}
                 >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
+                  <option value="GameTech">Gametech</option>
+                  <option value="GIS">GIS</option>
+                  <option value="Cyber">Cyber</option>
+                  <option value="BigData">Big Data</option>
                 </select>
               </div>
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">instagram</label>
+            <div className="control">
+              <input
+                type="text"
+                className="input"
+                value={instagram}
+                onChange={(e) => setinstagram(e.target.value)}
+                placeholder="instagram"
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">linkedin</label>
+            <div className="control">
+              <input
+                type="text"
+                className="input"
+                value={linkedin}
+                onChange={(e) => setlinkedin(e.target.value)}
+                placeholder="linkedin"
+              />
             </div>
           </div>
           <div className="field">

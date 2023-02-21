@@ -1,14 +1,13 @@
 import mongoose from "mongoose";
  
 const Project = mongoose.Schema({
-    Proyek:{
+    proyek:{
         type: String,
         required: true
     },
     tanggal:{
         type: Date,
-        
-        required: false
+        value: Date.now()
     },
     isi:{
         type: String,

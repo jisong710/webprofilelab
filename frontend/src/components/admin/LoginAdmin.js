@@ -14,7 +14,7 @@ const LoginAdmin = () => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            Navigate("/admin")
+            Navigate("/UserList")
             console.log(user);
         })
         .catch((error) => {

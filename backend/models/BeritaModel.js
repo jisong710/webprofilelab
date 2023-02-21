@@ -7,7 +7,7 @@ const Berita = mongoose.Schema({
     },
     tanggal:{
         type: Date,
-        required: false
+        value: Date.now()
     },
     isi:{
         type: String,

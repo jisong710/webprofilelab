@@ -17,11 +17,12 @@ import LoginAdmin from "./components/admin/LoginAdmin";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Navbar from "./components/attribute/navbar";
 import Footer from "./components/attribute/footer";
-import FooterLoggedIn from "./components/attribute/FooterLoggedIn";
 import NavbarLoggedIn from "./components/attribute/navbarLoggedIn";
 import LogoutUser from "./components/admin/logout";
 import Profile from "./components/beranda/profile";
 import ListBlogs from "./components/blogs/listBlogs";
+import BlogList from "./components/admin/BlogList";
+import ProjectList from "./components/admin/ProjectList";
 function App() {
   let [user,loading,error] = useAuthState(auth);
   if (loading) {
@@ -41,6 +42,17 @@ function App() {
         <Route path="Projek/" element={<Project />} />
         <Route path="tentangKami/" element={<TentangKami />} />
         <Route path="login/" element={<LoginAdmin />} />
+        <Route path="UserList/" element={[<LoginAdmin/>]} />
+        <Route path="BlogList/" element={[<LoginAdmin/>]} />
+        <Route path="ProjectList/" element={[<LoginAdmin/>]} />
+        <Route path="AddUser/" element={<LoginAdmin/>} />
+        <Route path="AddBerita/" element={<LoginAdmin />} />
+        <Route path="AddProject/" element={<LoginAdmin />} />
+        <Route path="EditUser/" element={<LoginAdmin />} />
+        <Route path="EditBerita/" element={<LoginAdmin />} />
+        <Route path="EditProject/" element={<LoginAdmin />} />
+        <Route path="logout/" element={<LoginAdmin />} />
+        <Route path="Admin/" element={<LoginAdmin />} />
       </Routes>
       <Footer/>
     </BrowserRouter>
@@ -51,16 +63,18 @@ function App() {
     <BrowserRouter>
     <NavbarLoggedIn/>
     <Routes>
-      <Route path="/" element={[<UserList/>]} />
+      <Route path="Admin/" element={[<UserList/>]} />
+      <Route path="UserList/" element={[<UserList/>]} />
+      <Route path="BlogList/" element={[<BlogList/>]} />
+      <Route path="ProjectList/" element={[<ProjectList/>]} />
       <Route path="AddUser/" element={<AddUser />} />
       <Route path="AddBerita/" element={<AddBerita />} />
       <Route path="AddProject/" element={<AddProject />} />
-      <Route path="EditUser/" element={<EditUser />} />
-      <Route path="EditBerita/" element={<EditBerita />} />
-      <Route path="EditProject/" element={<EditProject />} />
+      <Route path="EditUser/:id" element={<EditUser />} />
+      <Route path="EditBerita/:id" element={<EditBerita />} />
+      <Route path="EditProject/:id" element={<EditProject />} />
       <Route path="logout/" element={<LogoutUser />} />
     </Routes>
-    <FooterLoggedIn/>
     </BrowserRouter>);
   }
 }
